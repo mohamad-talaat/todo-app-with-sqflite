@@ -10,6 +10,10 @@ void createDatabase() async {
     onCreate: (db, version) async {
       await db.execute(
         'CREATE TABLE tasks(id INTEGER PRIMARY KEY, title TEXT, date TEXT, time TEXT, status TEXT)',
+          await getDataFromDatabase(db).then((value) {
+            newtasks = List.from(value);
+            print('Tasks loaded: $newtasks');
+          })
       );
       
       print('Database Created');

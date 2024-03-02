@@ -52,8 +52,7 @@ class AppCubit extends Cubit<AppState> {
       'todo.db',
       version: 1,
       onCreate: (database, version) {
-        database
-            .execute(
+        database.execute(
                 'CREATE TABLE tasks(id INTEGER PRIMARY KEY,title TEXT,date TEXT,time TEXT,status TEXT)')
             .then((value) {
           print('Database Created');
@@ -99,15 +98,16 @@ class AppCubit extends Cubit<AppState> {
 
   void getDataFromDatabase(database) {
     newtasks = [];
-    donetasks =
-        []; // انا ليه صفررت الليستات قبل الدخول ميضفش علي القديم انا عاوزه يأبديت
+    donetasks =  []; // انا ليه صفررت الليستات قبل الدخول ميضفش علي القديم انا عاوزه يأبديت
     archivedtasks = [];
     emit(databaseLoadingState());
     database.rawQuery('SELECT * FROM tasks').then((value) {
       value.forEach((element) {
-        if (element['status'] == 'new')
-          newtasks.add(
-              element); //لو عملت value بدل element هيطلع ايرور من 10 اخطاء بسبب كدا
+        if (element['status'] == 'new'){
+          newtasks.add(element);
+        //  newtasks.addAll(element);
+
+        }//لو عملت value بدل element هيطلع ايرور من 10 اخطاء بسبب كدا
         else if (element['status'] == 'done')
           donetasks.add(element);
         else

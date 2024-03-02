@@ -3,7 +3,6 @@ import 'package:coders/sqfliteDatabase/task_home_screen.dart';
 import 'package:dio_helper_flutter/dio_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:sqflite/sqflite.dart';
 import 'bloc&cubit/cubit.dart';
 import 'bloc&cubit/states.dart';
 import 'component/themes.dart';
@@ -11,7 +10,8 @@ import 'component/themes.dart';
 
 main(){
   runApp(myApp());
-   new myApp();
+  WidgetsFlutterBinding.ensureInitialized();
+  new myApp();
 DioHelper;
 
 }
@@ -27,7 +27,6 @@ class _myAppState extends State<myApp> {
   @override
   void initState() {
     super.initState();
-   // getDataFromDatabase(tasks);
   }
 
   @override
